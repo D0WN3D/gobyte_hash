@@ -34,7 +34,7 @@ import unittest
 header_hex = (
     "20000000" +  # version (LE)
     "07bc6973a4334e7b88480e9b9b03f792ae4c73141ab090dff85c05013b030000" +  # prev block (LE)
-    "58dd26d896e19c57c6579cf8dddda0a032b8c26e92cc23423bfefd77d5fd6dd0a"  # merkle root (LE)
+    "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0"  # merkle root (LE)
     "5a0d9c01" +  # time (LE)
     "f0ff0f1e" +  # bits (LE)
     "874e0400"    # nonce (LE)
