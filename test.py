@@ -32,14 +32,14 @@ import unittest
 
 # gobyte block #1 info
 header_hex = (
-    "02000000" +  # version (LE)
-    "07bc6973a4334e7b88480e9b9b03f792ae4c73141ab090dff85c05013b030000" +  # prev block (LE)
-    "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0"  # merkle root (LE)
-    "5a0d9c01" +  # time (LE)
-    "f0ff0f1e" +  # bits (LE)
-    "874e0400"    # nonce (LE)
+    "1209873605" +  # version (BE) // not sure
+    "07bcd769a4334e7b88480e9b9b03f792ae4c73141ab090dff85c05013b030000" +  # prev block (BE)
+    "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0"  # merkle root (BE)
+    "01B60D5A" +  # time (to HEX then BE) //not sure
+    "f0ff0f1e" +  # bits (BE)
+    "5CE40400"    # nonce (to HEX then BE) //not sure
 )
-# Convert RPC big-endian to little-endian for PoW test // GoByte is using big-endian for RPC, but the PoW hash is calculated on the little-endian header
+
 best_hash = "a29cd5d2b7cbd14a4bb3434674f59a421541b11cc875383fae1bf01f8a0c0000"
 
 class TestSequenceFunctions(unittest.TestCase):
