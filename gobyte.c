@@ -28,7 +28,7 @@
 void gobyte_hash(const char* input, int len, char* output)
 {
     // NeoScrypt produces a 32-byte hash (256-bit)
-    neoscrypt((unsigned char*)input, (unsigned char*)output, len);
+    neoscrypt((unsigned char*)input, (unsigned char*)output, 0);
 }
 
 // Dash's X11 Hashing Algorithm
