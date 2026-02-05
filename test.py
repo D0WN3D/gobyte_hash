@@ -30,7 +30,7 @@ import unittest
 header_hex = (
     "00000020" +  # version (to HEX then LE) // not sure
     "07bcd769a4334e7b88480e9b9b03f792ae4c73141ab090dff85c05013b030000" +  # prev block (32Bit LE)
-    "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0"  # merkle root (32Bit LE)
+    "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0" +  # merkle root (32Bit LE)
     "01960d5a" +  # time (to HEX then LE) //not sure
     "f0ff0f1e" +  # bits (LE)
     "5ce40400"    # nonce (to HEX then LE) //not sure
