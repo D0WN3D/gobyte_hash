@@ -1,7 +1,7 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
 
-#include "dash.h"
+#include "gobyte.h"
 
 #if PY_MAJOR_VERSION >= 3 || PY_MAJOR_VERSION == 3 && PY_MINOR_VERSION >= 7
 #define SIZE_ARG_TYPE Py_ssize_t
@@ -9,7 +9,7 @@
 #define SIZE_ARG_TYPE int
 #endif
 
-static PyObject *dash_getpowhash(PyObject *self, PyObject *args)
+static PyObject *gobyte_getpowhash(PyObject *self, PyObject *args)
 {
     char *output;
     PyObject *value;
@@ -24,9 +24,9 @@ static PyObject *dash_getpowhash(PyObject *self, PyObject *args)
     output = PyMem_Malloc(32);
 
 #if PY_MAJOR_VERSION >= 3
-    dash_hash((char *)PyBytes_AsString((PyObject*) input), (int)PyBytes_Size((PyObject*) input), output);
+    gobyte_hash((char *)PyBytes_AsString((PyObject*) input), (int)PyBytes_Size((PyObject*) input), output);
 #else
-    dash_hash((char *)PyString_AsString((PyObject*) input), (int)PyString_Size((PyObject*) input), output);
+    gobyte_hash((char *)PyString_AsString((PyObject*) input), (int)PyString_Size((PyObject*) input), output);
 #endif
     Py_DECREF(input);
 #if PY_MAJOR_VERSION >= 3
@@ -38,27 +38,27 @@ static PyObject *dash_getpowhash(PyObject *self, PyObject *args)
     return value;
 }
 
-static PyMethodDef DashMethods[] = {
-    { "getPoWHash", dash_getpowhash, METH_VARARGS, "Returns the proof of work hash using dash hash" },
+static PyMethodDef GoByteMethods[] = {
+    { "getPoWHash", gobyte_getpowhash, METH_VARARGS, "Returns the proof of work hash using gobyte hash" },
     { NULL, NULL, 0, NULL }
 };
 
 #if PY_MAJOR_VERSION >= 3
-static struct PyModuleDef DashModule = {
+static struct PyModuleDef GoByteModule = {
     PyModuleDef_HEAD_INIT,
-    "dash_hash",
+    "gobyte_hash",
     "...",
     -1,
-    DashMethods
+    GoByteMethods
 };
 
-PyMODINIT_FUNC PyInit_dash_hash(void) {
-    return PyModule_Create(&DashModule);
+PyMODINIT_FUNC PyInit_gobyte_hash(void) {
+    return PyModule_Create(&GoByteModule);
 }
 
 #else
 
-PyMODINIT_FUNC initdash_hash(void) {
-    (void) Py_InitModule("dash_hash", DashMethods);
+PyMODINIT_FUNC initgobyte_hash(void) {
+    (void) Py_InitModule("gobyte_hash", GoByteMethods);
 }
 #endif

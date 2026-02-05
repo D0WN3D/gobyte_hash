@@ -1,9 +1,10 @@
-#include "dash.h"
+#include "gobyte.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 
+//NeoScrypt ==> Scrypt,ChaCha,Salsa20,SHA-256,Blake2s | TODO
 #include "sha3/sph_blake.h"
 #include "sha3/sph_bmw.h"
 #include "sha3/sph_groestl.h"
@@ -17,7 +18,7 @@
 #include "sha3/sph_echo.h"
 
 
-void dash_hash(const char* input, int len, char* output)
+void gobyte_hash(const char* input, int len, char* output)
 {
     sph_blake512_context     ctx_blake;
     sph_bmw512_context       ctx_bmw;

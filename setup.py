@@ -1,8 +1,8 @@
 from setuptools import setup, Extension
 
-dash_hash_module = Extension('dash_hash',
-                                 sources = ['dashmodule.c',
-                                            'dash.c',
+gobyte_hash_module = Extension('gobyte_hash',
+                                 sources = ['gobytemodule.c',
+                                            'gobyte.c',
                                             'sha3/blake.c',
                                             'sha3/bmw.c',
                                             'sha3/groestl.c',
@@ -16,7 +16,7 @@ dash_hash_module = Extension('dash_hash',
                                             'sha3/shavite.c'],
                                include_dirs=['.', './sha3'])
 
-setup (name = 'dash_hash',
+setup (name = 'gobyte_hash',
        version = '1.4.0',
-       description = 'Binding for Dash X11 proof of work hashing.',
-       ext_modules = [dash_hash_module])
+       description = 'Binding for GoByte NeoScrypt proof of work hashing.',
+       ext_modules = [gobyte_hash_module])
