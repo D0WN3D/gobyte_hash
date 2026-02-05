@@ -33,12 +33,12 @@ import unittest
 #Little-endian Big-endian
 header_hex = ("20000000" +
     "073bd7d4334ae3878df805b14b01f000e92f743b9b9b0e48887b4e33a469d7bc0" +
-    "58dd269816ce169c6579f8dddd0a3282b8c26e92cc23423befedf75fd66cd0a0"
+    "58dd269816ce169c6579f8dddd0a3282b8c26e92cc23423befedf75fd66cd0a0" +
     "5a0d9a5a" +
     "f0ff0f1e" +
     "4e040004")
 #Little-endian Big-endian
-best_hash = 'A29CD5D2B7CBD14A4BB3434674F59A421541B11CC875383FAE1BF01F8A0C0000'
+best_hash = 'a29cd5d2b7cbd14a4bb3434674f59a421541b11cc875383fae1bf01f8a0c0000'
 
 class TestSequenceFunctions(unittest.TestCase):
 
