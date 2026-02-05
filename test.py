@@ -45,6 +45,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.best_hash = best_hash
 
     def test_gobyte_hash(self):
+        raw_hash = gobyte_hash.getPoWHash(self.block_header)
         self.pow_hash = hexlify(gobyte_hash.getPoWHash(self.block_header))
         self.assertEqual(self.pow_hash.decode(), self.best_hash)
 
