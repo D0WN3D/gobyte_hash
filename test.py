@@ -5,34 +5,40 @@ import unittest
 
 # gobyte block #1
 # moo@b1:~/.gobyte$ gobyted getblockhash 1
-# 000007d91d1254d60e2dd1ae580383070a4ddffa4c64c2eeb4a2f9ecc0414343
-# moo@b1:~/.gobyte$ gobyted getblock 000007d91d1254d60e2dd1ae580383070a4ddffa4c64c2eeb4a2f9ecc0414343
-# {
-#     "hash" : "000007d91d1254d60e2dd1ae580383070a4ddffa4c64c2eeb4a2f9ecc0414343",
-#     "confirmations" : 169888,
-#     "size" : 186,
-#     "height" : 1,
-#     "version" : 2,
-#     "merkleroot" : "ef3ee42b51e2a19c4820ef182844a36db1201c61eb0dec5b42f84be4ad1a1ca7",
-#     "tx" : [
-#         "ef3ee42b51e2a19c4820ef182844a36db1201c61eb0dec5b42f84be4ad1a1ca7"
-#     ],
-#     "time" : 1390103681,
-#     "nonce" : 128987,
-#     "bits" : "1e0ffff0",
-#     "difficulty" : 0.00024414,
-#     "previousblockhash" : "00000ffd590b1485b3caadc19b22e6379c733355108f107a430458cdf3407ab6",
-#     "nextblockhash" : "00000bafcc571ece7c5c436f887547ef41b574e10ef7cc6937873a74ef1efeae"
+# 00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2
+# moo@b1:~/.gobyte$ gobyted getblock # 00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2
+#{
+#   "hash": "00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2",
+#   "confirmations": 1534987,
+#   "size": 179,
+#   "height": 1,
+#   "version": 536870912,
+#   "versionHex": "20000000",
+#   "merkleroot": "a0d06cd65fd7feef3b4223cc926ec2b8320a0ddddf8779c6571ce169826dd58f",
+#   "tx": [
+#     "a0d06cd65fd7feef3b4223cc926ec2b8320a0ddddf8779c6571ce169826dd58f"
+#   ],
+#   "time": 1510848001,
+#   "mediantime": 1510848001,
+#   "nonce": 320604,
+#   "bits": "1e0ffff0",
+#   "difficulty": 0.000244140625,
+#   "chainwork": "0000000000000000000000000000000000000000000000000000000000200020",
+#   "nTx": 1,
+#   "previousblockhash": "0000033b01055cf8df90b01a14734cae92f7039b9b0e48887b4e33a469d7bc07",
+#   "nextblockhash": "000006413fc948dc46cd4da718b0bf59d2abfa81c06703db56e7642102581e46",
+#   "chainlock": false
 # }
-#TO DO:
+
+#Little-endian Big-endian
 header_hex = ("02000000" +
-    "b67a40f3cd5804437a108f105533739c37e6229bc1adcab385140b59fd0f0000" +
-    "a71c1aade44bf8425bec0deb611c20b16da3442818ef20489ca1e2512be43eef"
-    "814cdb52" +
+    "07BCD79D463AE3B48788E4B09B9B03F792AE4C73141AB090DFF85C05013B030000" +
+    "8FD56D8269E11C57C67987DFDD0D0A32B8C26E92CC23423BEFFED75FD66CD0A0"
+    "019c0d5a" +
     "f0ff0f1e" +
-    "dbf70100")
-#TO DO:
-best_hash = '434341c0ecf9a2b4eec2644cfadf4d0a07830358aed12d0ed654121dd9070000'
+    "874e0400")
+#Little-endian Big-endian
+best_hash = 'A29CD5D2B7CBD14A4BB3434674F59A421541B11CC875383FAE1BF01F8A0C0000'
 
 class TestSequenceFunctions(unittest.TestCase):
 
