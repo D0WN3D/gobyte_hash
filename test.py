@@ -32,7 +32,7 @@ import unittest
 
 # gobyte block #1 info
 header_hex = (
-    "20000000" +  # version (LE)
+    "02000000" +  # version (LE)
     "07bc6973a4334e7b88480e9b9b03f792ae4c73141ab090dff85c05013b030000" +  # prev block (LE)
     "8fd56d8269e11c57c67987dfdd0d0a32b8c26e92cc23423beffed75fd66cd0a0"  # merkle root (LE)
     "5a0d9c01" +  # time (LE)
