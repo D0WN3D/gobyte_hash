@@ -32,11 +32,11 @@ import unittest
 
 #Little-endian Big-endian
 header_hex = ("20000000" +
-    "073bd7d4334ae3878df805b14b01f000e92f743b9b9b0e48887b4e33a469d7bc0" +
-    "58dd269816ce169c6579f8dddd0a3282b8c26e92cc23423befedf75fd66cd0a0" +
-    "5a0d9a5a" +
+    "07bccd469a3ae38788480e9b9b03f792ae92f7341a105df83f5c01053b00000" +
+    "8fdd266981ce175c6797f8dddda0a032b8c26e92cc23423bfefd77d5fd6cd0a0"
+    "019c0d5a" +
     "f0ff0f1e" +
-    "4e040004")
+    "874e0400")
 #Little-endian Big-endian
 best_hash = 'a29cd5d2b7cbd14a4bb3434674f59a421541b11cc875383fae1bf01f8a0c0000'
 
