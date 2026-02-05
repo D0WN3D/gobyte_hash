@@ -30,15 +30,18 @@ import unittest
 #   "chainlock": false
 # }
 
-#Little-endian Big-endian
-header_hex = ("20000000" +
-    "07bccd469a3ae38788480e9b9b03f792ae92f7341a105df83f5c01053b0000" +
-    "8fdd266981ce175c6797f8dddda0a032b8c26e92cc23423bfefd77d5fd6cd0a0"
-    "019c0d5a" +
-    "f0ff0f1e" +
-    "874e0400")
-#Little-endian Big-endian
-best_hash = 'a29cd5d2b7cbd14a4bb3434674f59a421541b11cc875383fae1bf01f8a0c0000'
+# gobyte block #1 info
+header_hex = (
+    "20000000" +  # version (LE)
+    "07bccd469a3ae38788480e9b9b03f792ae92f7341a105df83f5c01053b0000" +  # prev block (LE)
+    "8fdd266981ce175c6797f8dddda0a032b8c26e92cc23423bfefd77d5fd6cd0a0" +  # merkle root (LE)
+    "019c0d5a" +  # time (LE)
+    "f0ff0f1e" +  # bits (LE)
+    "874e0400"    # nonce (LE)
+)
+# Convert RPC big-endian to little-endian for PoW test // GoByte is using big-endian for RPC, but the PoW hash is calculated on the little-endian header
+best_hash_be = "00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2"
+best_hash = ''.join([best_hash_be[i:i+2] for i in range(0, len(best_hash_be), 2)][::-1])
 
 class TestSequenceFunctions(unittest.TestCase):
 
