@@ -32,7 +32,7 @@ import unittest
 
 #Little-endian Big-endian
 header_hex = ("20000000" +
-    "07bccd469a3ae38788480e9b9b03f792ae92f7341a105df83f5c01053b00000" +
+    "07bccd469a3ae38788480e9b9b03f792ae92f7341a105df83f5c01053b0000" +
     "8fdd266981ce175c6797f8dddda0a032b8c26e92cc23423bfefd77d5fd6cd0a0"
     "019c0d5a" +
     "f0ff0f1e" +
