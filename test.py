@@ -1,56 +1,47 @@
 import gobyte_hash
+import struct
 from binascii import unhexlify, hexlify
-
 import unittest
 
-# gobyte block #1
-# moo@b1:~/.gobyte$ gobyted getblockhash 1
-# 00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2
-# moo@b1:~/.gobyte$ gobyted getblock # 00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2
-#{
-#   "hash": "00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2",
-#   "confirmations": 1534987,
-#   "size": 179,
-#   "height": 1,
-#   "version": 536870912,
-#   "versionHex": "20000000",
-#   "merkleroot": "a0d06cd65fd7feef3b4223cc926ec2b8320a0ddddf8779c6571ce169826dd58f",
-#   "tx": [
-#     "a0d06cd65fd7feef3b4223cc926ec2b8320a0ddddf8779c6571ce169826dd58f"
-#   ],
-#   "time": 1510848001,
-#   "mediantime": 1510848001,
-#   "nonce": 320604,
-#   "bits": "1e0ffff0",
-#   "difficulty": 0.000244140625,
-#   "chainwork": "0000000000000000000000000000000000000000000000000000000000200020",
-#   "nTx": 1,
-#   "previousblockhash": "0000033b01055cf8df90b01a14734cae92f7039b9b0e48887b4e33a469d7bc07",
-#   "nextblockhash": "000006413fc948dc46cd4da718b0bf59d2abfa81c06703db56e7642102581e46",
-#   "chainlock": false
-# }
+# BLOCK 1 DATA (Straight from gobyted JSON)
+VERSION = 536870912
+PREV_BLOCK = "0000033b01055cf8df90b01a14734cae92f7039b9b0e48887b4e33a469d7bc07"
+MERKLE_ROOT = "a0d06cd65fd7feef3b4223cc926ec2b8320a0ddddf8779c6571ce169826dd58f"
+TIMESTAMP = 1510848001
+BITS = 0x1e0ffff0
+NONCE = 320604
 
-#Little-endian Big-endian
-header_hex = ("02000000" +
-    "07BCD79D463AE3B48788E4B09B9B03F792AE4C73141AB090DFF85C05013B030000" +
-    "8FD56D8269E11C57C67987DFDD0D0A32B8C26E92CC23423BEFFED75FD66CD0A0"
-    "019c0d5a" +
-    "f0ff0f1e" +
-    "874e0400")
-#Little-endian Big-endian
-best_hash = 'A29CD5D2B7CBD14A4BB3434674F59A421541B11CC875383FAE1BF01F8A0C0000'
+# THE TARGET: BLOCK 1 HASH (RPC 'hash' field)
+BEST_HASH = "00000c8a1ff01bae3f3875c81cb14115429af5744643b34b4ad1cbb7d2d59ca2"
+
+def get_block_header():
+    # < = Little Endian
+    # I = 4 bytes (uint32_t)
+    header = struct.pack("<I", VERSION)
+    header += unhexlify(PREV_BLOCK)[::-1]  # Reverse to internal LE
+    header += unhexlify(MERKLE_ROOT)[::-1] # Reverse to internal LE
+    header += struct.pack("<I", TIMESTAMP)
+    header += struct.pack("<I", BITS)
+    header += struct.pack("<I", NONCE)
+    return header
 
 class TestSequenceFunctions(unittest.TestCase):
-
     def setUp(self):
-        self.block_header = unhexlify(header_hex)
-        self.best_hash = best_hash
+        self.block_header = get_block_header()
+        self.best_hash = BEST_HASH
 
     def test_gobyte_hash(self):
-        self.pow_hash = hexlify(gobyte_hash.getPoWHash(self.block_header))
-        self.assertEqual(self.pow_hash.decode(), self.best_hash)
-
+        # 1. Get raw PoW hash (32 bytes)
+        raw_hash = gobyte_hash.getPoWHash(self.block_header)
+        
+        # 2. Reverse to match RPC string format
+        self.pow_hash = hexlify(raw_hash[::-1]).decode()
+        
+        print(f"\nHeader Hex: {hexlify(self.block_header).decode()}")
+        print(f"Calculated: {self.pow_hash}")
+        print(f"Target:     {self.best_hash}")
+        
+        self.assertEqual(self.pow_hash, self.best_hash)
 
 if __name__ == '__main__':
     unittest.main()
-

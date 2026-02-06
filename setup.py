@@ -19,10 +19,16 @@ from setuptools import setup, Extension
 # OLD DASH VERSION FOR REFERENCE
 
 gobyte_hash_module = Extension('gobyte_hash',
-                                 sources = ['gobytemodule.c',
-                                            'gobyte.c',
-                                            'sha3/neoscrypt.c'],
-                               include_dirs=['.', './sha3'])
+                               sources = ['gobytemodule.c',
+                                          'gobyte.c',
+                                          'sha3/neoscrypt.c'],
+                               include_dirs=['.', './sha3'],
+                               define_macros=[
+                                   # FORCE GENERIC C (Disables buggy ASM on CI)
+                                   ('OPT', '0'), 
+                                   ('GENERIC', '1')
+                               ],
+                               extra_compile_args=['-O2', '-fcommon'])
 
 setup (name = 'gobyte_hash',
        version = '1.4.0',
