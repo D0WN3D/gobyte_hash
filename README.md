@@ -4,7 +4,7 @@ Python module for GoByte's NeoScrypt hashing.
 
 ## Install
 
-Python 3.5+ or 2.7+ and the associated development package (e.g., `python3-dev`) is required as well as a gcc.
+Python 3.14+ or 3.10+ and the associated development package (e.g., `python3-dev`) is required as well as a gcc.
 
     $ pip3 install -r requirements.txt .
 
